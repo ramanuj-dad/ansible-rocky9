@@ -1,0 +1,17 @@
+---
+- name: Build a Kubernetes cluster on Rocky 9
+  hosts: k8s_nodes
+  become: true
+
+  vars:
+    kube_version: v1.30.0
+    # Example Kubespray variables. Override as you need:
+    kube_network_plugin: cilium
+    download_container: false             # skip pulling images first
+
+  pre_tasks:
+    - import_role:
+        name: geerlingguy.containerd      # install CRI
+
+  roles:
+    - role: kubernetes.sigs.kubespray.kubespray  # main collection role
