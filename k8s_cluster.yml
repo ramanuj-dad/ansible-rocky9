@@ -1,17 +1,13 @@
 ---
-- name: Build a Kubernetes cluster on Rocky 9
+# 1) Optional pre-tasks: install containerd on every node
+- name: Prepare Rocky 9 nodes
   hosts: k8s_nodes
   become: true
+  tasks:
+    - name: Install container runtime
+      import_role:
+        name: geerlingguy.containerd
 
-  vars:
-    kube_version: v1.30.0
-    # Example Kubespray variables. Override as you need:
-    kube_network_plugin: cilium
-    download_container: false             # skip pulling images first
-
-  pre_tasks:
-    - import_role:
-        name: geerlingguy.containerd      # install CRI
-
-  roles:
-    - role: kubernetes.sigs.kubespray.kubespray  # main collection role
+# 2) Run the Kubespray cluster playbook that lives inside the collection
+- name: Deploy the Kubernetes cluster with Kubespray
+  import_playbook: kubernetes_sigs.kubespray.cluster
