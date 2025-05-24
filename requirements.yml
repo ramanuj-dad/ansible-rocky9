@@ -3,7 +3,7 @@
 collections:
   # Core Kubernetes modules – comes from Galaxy
   - name: kubernetes.core
-    version: "latest"
+    version: "5.2.0"
 
   # Kubespray straight from its Git repo (← THIS line changed)
   - source: git+https://github.com/kubernetes-sigs/kubespray.git
