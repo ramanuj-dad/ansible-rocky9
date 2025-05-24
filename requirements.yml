@@ -1,16 +1,15 @@
 ---
-# Ansible Galaxy/Automation-Hub dependencies
+# Galaxy / Automation-Hub dependencies for this project
 collections:
-  # Kubernetes modules for later day-2 tasks
+  # Core Kubernetes modules – comes from Galaxy
   - name: kubernetes.core
     version: "2.4.0"
 
-  # Kubespray straight from the Git source (official upstream)
-  - name: git+https://github.com/kubernetes-sigs/kubespray.git
-    type: git          # tell ansible-galaxy this line is a Git repo
-    version: v2.28.0   # pin a released tag; change when you’re ready to upgrade
+  # Kubespray straight from its Git repo (← THIS line changed)
+  - source: git+https://github.com/kubernetes-sigs/kubespray.git
+    type: git
+    version: v2.28.0        # pin a tag; update as needed
 
 roles:
-  # Simple containerd install—handy for single-node tests
   - name: geerlingguy.containerd
     version: "1.2.0"

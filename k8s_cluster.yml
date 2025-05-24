@@ -1,13 +1,12 @@
 ---
-# 1) Optional pre-tasks: install containerd on every node
-- name: Prepare Rocky 9 nodes
+# 1) Prepare the nodes (containerd)
+- name: Install container runtime on Rocky 9
   hosts: k8s_nodes
   become: true
   tasks:
-    - name: Install container runtime
-      import_role:
+    - import_role:
         name: geerlingguy.containerd
 
-# 2) Run the Kubespray cluster playbook that lives inside the collection
-- name: Deploy the Kubernetes cluster with Kubespray
+# 2) Run Kubespray’s built-in cluster playbook
+- name: Deploy Kubernetes with Kubespray
   import_playbook: kubernetes_sigs.kubespray.cluster
