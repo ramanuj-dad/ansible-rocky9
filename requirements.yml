@@ -3,7 +3,7 @@
 collections:
   # Core Kubernetes modules – comes from Galaxy
   - name: kubernetes.core
-    version: "2.4.0"
+    version: "latest"
 
   # Kubespray straight from its Git repo (← THIS line changed)
   - source: git+https://github.com/kubernetes-sigs/kubespray.git
@@ -12,4 +12,4 @@ collections:
 
 roles:
   - name: geerlingguy.containerd
-    version: "1.2.0"
+    version: "1.3.1"
