@@ -1,12 +1,3 @@
 ---
-# 1) Prepare the nodes (containerd)
-- name: Install container runtime on Rocky 9
-  hosts: k8s_nodes
-  become: true
-  tasks:
-    - import_role:
-        name: geerlingguy.containerd
-
-# 2) Run Kubespray’s built-in cluster playbook
-- name: Deploy Kubernetes with Kubespray
-  import_playbook: kubernetes_sigs.kubespray.cluster
+# Single-line wrapper: let Kubespray handle everything
+- import_playbook: kubernetes_sigs.kubespray.cluster
